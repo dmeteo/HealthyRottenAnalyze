@@ -23,15 +23,29 @@ async def handle_photo(message: types.Message):
     img_bytes = file_bytes.read()
 
     start = time.time()
-    result = predict_image_from_bytes(img_bytes)
+    label, confidence = predict_image_from_bytes(img_bytes)
     elapsed = time.time() - start
 
-    await message.reply(
-        f"Модель думает, что это:\n<b>{result}</b>\n\n"
-        f"Время инференса: <b>{elapsed*1000:.1f} мс</b>\n\n"
-        f"Можешь отправить другое фото для анализа.",
-        parse_mode="HTML"
-    )
+    threshold = 0.7
+
+    if confidence < threshold:
+        answer = (
+            f"Внимание!\n"
+            f"Модель не уверена в предсказании (уверенность {confidence:.2f}).\n"
+            f"Возможно, на фото не фрукт/овощ или такого класса нет в обучении.\n\n"
+            f"Модель думает, что это: <b>{label}</b>\n"
+            f"Время инференса: <b>{elapsed*1000:.1f} мс</b>\n\n"
+            f"Можешь отправить другое фото для анализа."
+        )
+    else:
+        answer = (
+            f"Модель думает, что это:\n<b>{label}</b>\n"
+            f"Уверенность: <b>{confidence*100:.1f}%</b>\n"
+            f"Время инференса: <b>{elapsed*1000:.1f} мс</b>\n\n"
+            f"Можешь отправить другое фото для анализа."
+        )
+
+    await message.reply(answer, parse_mode="HTML")
 
 @dp.message()
 async def handle_any(message: Message):

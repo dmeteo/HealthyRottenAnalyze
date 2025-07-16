@@ -1,5 +1,6 @@
 import torch
 from torchvision.models import efficientnet_b0
+import torch.nn.functional as F
 import torch.nn as nn
 from PIL import Image
 import io
@@ -21,3 +22,15 @@ def predict_image_from_bytes(img_bytes):
         output = model(input_tensor)
         pred = output.argmax(1).item()
     return id2label[pred]
+
+
+def predict_image_from_bytes(img_bytes, threshold=0.5):
+    img = Image.open(io.BytesIO(img_bytes)).convert('RGB')
+    input_tensor = val_transform(img).unsqueeze(0)
+    with torch.no_grad():
+        output = model(input_tensor)
+        probs = F.softmax(output, dim=1).cpu().numpy()[0]
+        pred = probs.argmax()
+        confidence = probs[pred]
+    label = id2label[pred]
+    return label, confidence
