@@ -12,4 +12,6 @@
 ## Датасет
 [https://www.kaggle.com/code/subhadipde2000/fruits-and-vegetables-healthy-or-rotten](https://www.kaggle.com/code/subhadipde2000/fruits-and-vegetables-healthy-or-rotten)
 
+---
+
 Протестировать можно в tg: @healthy_rotten_bot
