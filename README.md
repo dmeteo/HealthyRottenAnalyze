@@ -6,7 +6,7 @@
 
 Дообучение: на 28 классах, аугментации (RandomHorizontalFlip, RandomRotation)
 
-Валидация: 0.98+ Accuracy, подробные метрики в Jupyter
+Валидация: 0.98+ Accuracy, подробные метрики в Jupyter(ml/project.ipynb)
 
 
 ## Датасет
