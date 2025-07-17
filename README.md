@@ -10,7 +10,7 @@
 
 
 ## Датасет
-[https://www.kaggle.com/code/subhadipde2000/fruits-and-vegetables-healthy-or-rotten](https://www.kaggle.com/code/subhadipde2000/fruits-and-vegetables-healthy-or-rotten)
+[https://www.kaggle.com/datasets/muhammad0subhan/fruit-and-vegetable-disease-healthy-vs-rotten](https://www.kaggle.com/datasets/muhammad0subhan/fruit-and-vegetable-disease-healthy-vs-rotten)
 
 ---
 
